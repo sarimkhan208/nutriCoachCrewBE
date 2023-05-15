@@ -20,13 +20,9 @@ const io = new Server(server, {
 });
 
 
-io.listen(8080)
-
 io.on('connection',(socket) => {
-    // console.log(`User connect ${socket.id}`)
 
     socket.on("join_room",(data)=>{
-        // console.log("join_room",data)
         socket.join(data)
     })
 
@@ -35,7 +31,6 @@ io.on('connection',(socket) => {
     })
 
     socket.on("disconnect" , ()=>{
-        // console.log("User disconnect",socket.id)
     })
 
 })
@@ -50,7 +45,7 @@ app.get("/",(req,res)=>{
 
 app.use("/users",userRouter);
 
-app.listen(8080, async ()=>{
+server.listen(8000, async ()=>{
     try{
         await connection
         console.log('Connected to MongoDB')
